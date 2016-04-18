@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "browserify src/index.jsx -t babelify -o dist/bundle.js",
-    "watch": "watchify  src/index.jsx -t babelify -o dist/bundle.js -v"
+    "build": "browserify src/index.tsx -p [ tsify ] -o dist/bundle.js",
+    "watch": "watchify  src/index.tsx -p [ tsify ] -o dist/bundle.js -v"
   },
   "keywords": [],
   "author": "",

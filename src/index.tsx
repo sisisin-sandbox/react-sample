@@ -7,15 +7,15 @@ import {render} from "react-dom";
 //import injectTapEventPlugin from 'react-tap-event-plugin';
 //injectTapEventPlugin();
 
-interface State {
+interface MyState {
   count:number;
 }
-interface Props {
+interface MyProps {
   count:number;
 }
 
-class MyComponent extends Component<Props,State> {
-  props:Props;
+class MyComponent extends Component<MyProps,MyState> {
+  props:MyProps;
   componentDidMount() {
     this.dispatch("increment");
   }
@@ -30,15 +30,17 @@ class MyComponent extends Component<Props,State> {
 }
 
 
-class App extends Flux<State> {
+class App extends Flux<MyState> {
   subscribe() { // `subscribe` is called once in constructor
     this.on("increment", () => {
       this.update(({count}) => {
-        return {count: count + 1}; // return next state
+        const nextState:MyState = {count: count+1};
+
+        return nextState; // return next state
       });
     });
   }
-  render(state: State) {
+  render(state: MyState) {
     return <MyComponent {...state}/>;
   }
 }
