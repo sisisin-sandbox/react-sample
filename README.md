@@ -6,6 +6,4 @@ npm run build
 
 watching
 
-```
-npm run watch
-```
+`npm run watchify` and `npm run tsc-w` at other console.
