@@ -1,11 +1,21 @@
+/// <reference path="../typings/browser.d.ts" />
+
 import * as React from "react";
 import {Flux, Component} from "flumpt";
 import {render} from "react-dom";
-import FlatButton from 'material-ui/lib/flat-button';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
+//import FlatButton from 'material-ui/lib/flat-button';
+//import injectTapEventPlugin from 'react-tap-event-plugin';
+//injectTapEventPlugin();
 
-class MyComponent extends Component {
+interface State {
+  count:number;
+}
+interface Props {
+  count:number;
+}
+
+class MyComponent extends Component<Props,State> {
+  props:Props;
   componentDidMount() {
     this.dispatch("increment");
   }
@@ -13,13 +23,14 @@ class MyComponent extends Component {
     return (
       <div>
         {this.props.count}
-        <FlatButton label="increment" primary={true} onClick={() => this.dispatch("increment")}/>
+        <button onClick={() => this.dispatch("increment")}>increment</button>
       </div>
     );
   }
 }
 
-class App extends Flux {
+
+class App extends Flux<State> {
   subscribe() { // `subscribe` is called once in constructor
     this.on("increment", () => {
       this.update(({count}) => {
@@ -27,7 +38,7 @@ class App extends Flux {
       });
     });
   }
-  render(state) {
+  render(state: State) {
     return <MyComponent {...state}/>;
   }
 }
