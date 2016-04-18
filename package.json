@@ -4,13 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "browserify src/index.tsx -p [ tsify ] -o dist/bundle.js",
-    "watch": "watchify  src/index.tsx -p [ tsify ] -o dist/bundle.js -v"
+    "build": "tsc && browserify _tmp/index.js -t babelify -o dist/bundle.js",
+    "tsc-w": "tsc -w",
+    "watchify": "watchify _tmp/index.js -t babelify -o dist/bundle.js -v"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-preset-es2015": "^6.6.0",
+    "babelify": "^7.2.0",
     "browserify": "^13.0.0",
     "flumpt": "^0.1.4",
     "material-ui": "^0.14.4",

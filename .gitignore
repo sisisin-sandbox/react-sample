@@ -1,3 +1,5 @@
 node_modules/
 dist/
 typings/
+_tmp/
+npm-debug.log
